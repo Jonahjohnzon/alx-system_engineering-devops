@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # This script is displaying "Best School" 10 times using while with i
 
-a=0
+a=1
 
-while [ $a -lt 10 ]
+while [ $a -lt 11 ]
 do
 	if [ $a -eq 4 ];
 	then
