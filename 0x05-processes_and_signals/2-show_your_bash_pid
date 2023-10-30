@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#Display a list of running progras containing bash keyboard
+
+ps -aux | grep bash
