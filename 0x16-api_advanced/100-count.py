@@ -4,22 +4,22 @@ import requests
 
 
 def count_words(subreddit, word_list, instances={}, after="", count=0):
-    """Prints counts of given words found in hot posts of subreddit.
+    """Print counts of given words found in hot posts of subreddit.
     """
     url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
     headers = {
-        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
+        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/jonah)"
     }
     params = {
         "after": after,
         "count": count,
         "limit": 100
     }
-    resp = requests.get(url, headers=headers, params=params,
+    response = requests.get(url, headers=headers, params=params,
                             allow_redirects=False)
     try:
-        results = resp.json()
-        if resp.status_code == 404:
+        results = response.json()
+        if response.status_code == 404:
             raise Exception
     except Exception:
         print("")
@@ -29,10 +29,10 @@ def count_words(subreddit, word_list, instances={}, after="", count=0):
     after = results.get("after")
     count += results.get("dist")
     for c in results.get("children"):
-        t = c.get("data").get("title").lower().split()
+        tit = c.get("data").get("title").lower().split()
         for word in word_list:
-            if word.lower() in t:
-                tim = len([t for t in t if t == word.lower()])
+            if word.lower() in tit:
+                tim = len([t for t in tit if t == word.lower()])
                 if instances.get(word) is None:
                     instances[word] = tim
                 else:
